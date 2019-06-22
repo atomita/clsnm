@@ -1,7 +1,18 @@
 {
   "name": "clsnm",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atomita/clsnm.git"
+  },
   "description": "A utility function for generating a string for use as a DOM element's `className`.",
+  "keywords": [
+    "class",
+    "classes",
+    "className",
+    "classNames",
+    "classList"
+  ],
   "main": "dist/clsnm.js",
   "ts:main": "src/clsnm.ts",
   "typings": "dist/clsnm.d.ts",
