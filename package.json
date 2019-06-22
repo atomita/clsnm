@@ -1,0 +1,75 @@
+{
+  "name": "clsnm",
+  "version": "0.0.1",
+  "description": "A utility function for generating a string for use as a DOM element's `className`.",
+  "main": "dist/clsnm.js",
+  "ts:main": "src/clsnm.ts",
+  "typings": "dist/clsnm.d.ts",
+  "author": "atomita",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@types/jest": "^24.0.15",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^24.8.0",
+    "babel-preset-power-assert": "^3.0.0",
+    "husky": "^2.4.1",
+    "jest": "^24.8.0",
+    "lint-staged": "^8.2.1",
+    "power-assert": "^1.6.1",
+    "prettier": "^1.18.2",
+    "rollup": "^1.16.2",
+    "rollup-plugin-typescript2": "^0.21.2",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.18.0",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.5.2",
+    "uglify-js": "^3.6.0"
+  },
+  "scripts": {
+    "test": "jest --coverage --no-cache",
+    "build": "npm run bundle:clean && npm run minify",
+    "bundle": "rollup --config",
+    "bundle:clean": "rm -rf ./dist && npm run bundle",
+    "minify": "uglifyjs dist/clsnm.js -o dist/clsnm.min.js -mc pure_funcs=['Object.defineProperty'] --source-map includeSources,url=clsnm.min.js.map",
+    "release": "npm run build && npm test && git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags && npm publish"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "subTaskConcurrency": 1,
+    "linters": {
+      "src/**/*.ts": [
+        "prettier --write",
+        "tslint --fix",
+        "git add"
+      ]
+    }
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "globals": {
+      "ts-jest": {
+        "babelConfig": {
+          "presets": [
+            "power-assert"
+          ]
+        }
+      }
+    }
+  }
+}
