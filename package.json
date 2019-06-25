@@ -1,6 +1,7 @@
 {
   "name": "clsnm",
   "version": "0.0.1",
+  "reveal": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/atomita/clsnm.git"
