@@ -25,6 +25,9 @@ clsnm({ foo: { bar: true, baz: true } })
 
 clsnm({ foo: true, bar: { _baz: true } })
 //=> foo bar_baz
+
+clsnm({ foo: { Bar: { Baz: true } } }, v => v.replace(/[A-Z]/g, v => v.toLowerCase()))
+//=> foo-bar-baz
 ```
 
 ## License
