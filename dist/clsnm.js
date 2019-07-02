@@ -1,5 +1,5 @@
 /*
-clsnm v0.0.1
+clsnm v0.0.2
 https://github.com/atomita/clsnm
 Released under the MIT License.
 */
@@ -28,6 +28,8 @@ Released under the MIT License.
       return key;
   }
   function classNames(obj, mapper, filter) {
+      if (mapper === void 0) { mapper = noop; }
+      if (filter === void 0) { filter = Boolean; }
       return flat(entries(obj)
           .filter(function (_a) {
           var _ = _a[0], v = _a[1];
