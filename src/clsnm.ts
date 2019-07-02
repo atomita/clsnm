@@ -1,4 +1,4 @@
-const entries = Object.entries
+const entries: ((o: any) => [string,any][]) = Object.entries
   ? Object.entries
   : (obj) => {
     const result = []
@@ -12,15 +12,19 @@ const entries = Object.entries
 
 const concat = [].concat
 
-function flat(arr) {
+function flat(arr: (string|string[])[]) {
   return concat.apply([], arr)
 }
 
-function noop(key) {
+function noop(key: string) {
   return key
 }
 
-function classNames (obj, mapper, filter) {
+function classNames (
+  obj: any,
+  mapper: Mapper|null = noop,
+  filter: Filter|null = Boolean
+): string[] {
   return flat(
     entries(obj)
       .filter(([_, v]) => filter(v))
@@ -37,8 +41,8 @@ function classNames (obj, mapper, filter) {
   )
 }
 
-type Mapper = (string) => string
-type Filter = (any) => boolean
+type Mapper = (k: string) => string
+type Filter = (v: any) => boolean
 
 export default function clsnm (
   obj: any,
